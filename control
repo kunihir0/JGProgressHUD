@@ -1,7 +1,8 @@
 Package: com.kunihir0.jgprogresshud
 Name: JGProgressHUD
-Version: 0.0.1
-Architecture: iphoneos-arm
+Version: 0.0.2
+Architecture: iphoneos-arm64
+Recommends: com.kunihir0.doux
 Description: An awesome library of some sort!!
 Maintainer: kunihir0
 Author: kunihir0
