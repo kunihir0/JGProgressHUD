@@ -96,7 +96,8 @@ jobs:
           echo "Building release package for ${{ matrix.scheme }}""..."
           if [ "${{ matrix.scheme }}" == "roothide" ]; then
             sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}/" control
-            echo "Provides: ${BASE_PKG_NAME}" >> control
+            sed -i.bak '/^Provides:/d' control
+            echo "Provides: ${BASE_PKG_NAME}, ${{ matrix.scheme }}" >> control
           fi
           
           rm -rf packages
