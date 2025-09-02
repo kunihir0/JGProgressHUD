@@ -94,8 +94,10 @@ jobs:
 
           # Build release version
           echo "Building release package for ${{ matrix.scheme }}""..."
-          sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}/" control
-          echo "Provides: ${BASE_PKG_NAME}" >> control
+          if [ "${{ matrix.scheme }}" == "roothide" ]; then
+            sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}/" control
+            echo "Provides: ${BASE_PKG_NAME}" >> control
+          fi
           
           rm -rf packages
           make clean
@@ -109,8 +111,12 @@ jobs:
 
           # Build debug version
           echo "Building debug package for ${{ matrix.scheme }}""..."
-          sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}-debug/" control
-          echo "Provides: ${BASE_PKG_NAME}" >> control
+          if [ "${{ matrix.scheme }}" == "roothide" ]; then
+            sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}-debug/" control
+            echo "Provides: ${BASE_PKG_NAME}" >> control
+          else
+            sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-debug/" control
+          fi
 
           rm -rf packages
           make clean
@@ -175,9 +181,9 @@ jobs:
           find artifacts -type f -name "*.deb" | while read -r file;
             do
             if [[ "$file" == *release-rootless.deb ]]; then
-              mv "$file" "${GITHUB_WORKSPACE}/${PACKAGE_NAME}-${CLEAN_VERSION}-rootless.deb"
+              mv "$file" "${GITHUB_WORKSPACE}/${PACKAGE_NAME}-${CLEAN_VERSION}.deb"
             elif [[ "$file" == *debug-rootless.deb ]]; then
-              mv "$file" "${GITHUB_WORKSPACE}/${PACKAGE_NAME}-${CLEAN_VERSION}-rootless-debug.deb"
+              mv "$file" "${GITHUB_WORKSPACE}/${PACKAGE_NAME}-${CLEAN_VERSION}-debug.deb"
             elif [[ "$file" == *release-roothide.deb ]]; then
               mv "$file" "${GITHUB_WORKSPACE}/${PACKAGE_NAME}-${CLEAN_VERSION}-roothide.deb"
             elif [[ "$file" == *debug-roothide.deb ]]; then
