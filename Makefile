@@ -6,8 +6,8 @@ include $(THEOS)/makefiles/common.mk
 
 LIBRARY_NAME = libJGProgressHUD
 
-JGProgressHUD_FILES = $(wildcard *.m)
-JGProgressHUD_CFLAGS = -fobjc-arc
-JGProgressHUD_INSTALL_PATH = /usr/local/lib
+libJGProgressHUD_FILES = $(wildcard *.m)
+libJGProgressHUD_CFLAGS = -fobjc-arc
+libJGProgressHUD_INSTALL_PATH = /usr/local/lib
 
 include $(THEOS_MAKE_PATH)/library.mk
