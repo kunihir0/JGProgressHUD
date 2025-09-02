@@ -1,5 +1,6 @@
 Package: com.kunihir0.jgprogresshud
 Name: JGProgressHUD
+Provides: com.kunihir0.jgprogresshud
 Version: 0.0.3
 Architecture: iphoneos-arm64
 Recommends: com.kunihir0.doux

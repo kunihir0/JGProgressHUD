@@ -96,8 +96,6 @@ jobs:
           echo "Building release package for ${{ matrix.scheme }}""..."
           if [ "${{ matrix.scheme }}" == "roothide" ]; then
             sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}/" control
-            sed -i.bak '/^Provides:/d' control
-            echo "Provides: ${BASE_PKG_NAME}, ${BASE_PKG_NAME}-${{ matrix.scheme }}" >> control
           fi
           
           rm -rf packages
@@ -114,8 +112,6 @@ jobs:
           echo "Building debug package for ${{ matrix.scheme }}""..."
           if [ "${{ matrix.scheme }}" == "roothide" ]; then
             sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-${{ matrix.scheme }}-debug/" control
-            sed -i.bak '/^Provides:/d' control
-            echo "Provides: ${BASE_PKG_NAME}, ${BASE_PKG_NAME}-${{ matrix.scheme }}" >> control
           else
             sed -i.bak "s/^Package:.*/Package: ${BASE_PKG_NAME}-debug/" control
           fi
