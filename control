@@ -1,6 +1,7 @@
 Package: com.kunihir0.jgprogresshud
 Name: JGProgressHUD
 Version: 0.0.2
+Provides: com.kunihir0.jgprogresshud-roothide,com.kunihir0.jgprogresshud,com.kunihir0.jgprogresshud-rootless
 Architecture: iphoneos-arm64
 Recommends: com.kunihir0.doux
 Description: An awesome library of some sort!!
